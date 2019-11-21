@@ -1,17 +1,24 @@
 <h1>Cocktails List</h1>
 
-<%= link_to "Add a cocktail to list!", new_cocktail_path %>
-
-<ul>
-  <% @cocktails.each do |cocktail| %>
-    <li>
-      <%= link_to cocktail.name, cocktail_path(cocktail)%>
-      <%= link_to dose_path(cocktail),
-        method: :delete, data: { confirm: "Are you sure?"} do %>
-        <i class="fas fa-trash-alt"></i>
-      <% end %>
-    </li>
+<div class="col-md-10 col-lg-6 xl-6">
+  <%= simple_form_for @cocktail do |f| %>
+    <%= f.input :name, placeholder: 'name' %>
+</div>
+    <%= f.button :submit, 'Send!', class: 'button' %>
   <% end %>
-</ul>
 
 
+
+<div class="grid-size">
+  <ul>
+    <% @cocktails.each do |cocktail| %>
+      <li>
+        <%= link_to cocktail.name, cocktail_path(cocktail)%>
+        <%= link_to dose_path(cocktail),
+          method: :delete, data: { confirm: "Are you sure?"} do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
