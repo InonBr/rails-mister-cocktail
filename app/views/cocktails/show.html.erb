@@ -1,0 +1,16 @@
+<h1><%= @cocktail.name %></h1>
+
+<%= simple_form_for [@cocktail, @dose] do |f| %>
+  <%= f.input :description, placeholder: 'Please add description' %>
+  <%=
+    f.association :ingredient,
+    collection: Ingredient.order('name ASC'),
+    include_blank: false
+  %>
+  <%= f.button :submit, 'Send!' %>
+<% end %>
+
+
+<% @cocktail.doses.each do |dose| %>
+ <p><%= dose.description %> - <%= dose.ingredient.name %>  </p>
+<% end %>
